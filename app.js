@@ -17,6 +17,24 @@
 		  	var arr = JSON.parse(body);
 		  	console.log(arr.length);
 		  	for (var i = 0; i < arr.length; ++i){
+		  		var params = { 
+		  			TableName = table,
+		  			Item: {
+		  				"id": arr[i].id,
+		  				"logo": arr[i].logo,
+		  				"lat": arr[i].lat,
+		  				"lng": arr[i].lng,
+		  				"route": arr[i].route
+		  			} 
+		  		};
+
+		  	docClient.put(params, function(err, data) {
+       			if (err) {
+           			console.error("Unable to add bus", arr[i].id, ". Error JSON:", JSON.stringify(err, null, 2));
+       			} else {
+           			console.log("PutItem succeeded:", arr[i].id);
+       			}
+    		});
 		  		console.log(arr[i].id);
 		  		console.log(arr[i].logo);
 		  		console.log(arr[i].lat);
