@@ -1,5 +1,4 @@
 	var request = require('request');
-	var parseString = require('xml2js').parseString;
 	var AWS = require('aws-sdk');
 
 	var express = require('express')
@@ -10,8 +9,20 @@
 	});
 
 	var docClient = new AWS.DynamoDB.DocumentClient();
-	var table = "us_waiting_time";
+	var table = "bronco-mapper";
 
+	function fetchBusRoutes() {
+		request('https://rqato4w151.execute-api.us-west-1.amazonaws.com/dev/info', function (error, response, body) {
+		  if (!error && response.statusCode == 200) {
+		    console.log(body) 
+		  }
+		})
+	}
+
+	app.get('/fetch', function(req, res) {
+		fetchBusRoutes();
+	})
+/**
 	function fetchWaitingtimes() {
 		request('https://rqato4w151.execute-api.us-west-1.amazonaws.com/dev/info', function (error, response, body) {
 		  if (!error && response.statusCode == 200) {
@@ -79,9 +90,9 @@
 	})
 
 	app.get('/query', function (req, res) {
-		queryWaitingtime(req.query.name, res);	  	
+		queryWaitingtime(req.query.name, res);	
 	})
-
+**/
 	app.listen(3000, function () {
 	  console.log('Example app listening on port 3000!')
 	})
