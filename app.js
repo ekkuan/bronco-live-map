@@ -14,7 +14,23 @@
 	function fetchBusRoutes() {
 		request('https://rqato4w151.execute-api.us-west-1.amazonaws.com/dev/info', function (error, response, body) {
 		  if (!error && response.statusCode == 200) {
-		    console.log(body) 
+		  	var arr = JSON.parse(body);
+		  	console.log(arr.length);
+		  	for (var i = 0; i < arr.length; ++i){
+		  		console.log(arr[i].id);
+		  		console.log(arr[i].logo);
+		  		console.log(arr[i].lat);
+		  		console.log(arr[i].lng);
+		  		console.log(arr[i].route);
+		  	}
+		 //    parseString(body, function (err, result) {
+			//     // console.dir(result.rss.channel[0].item);
+			//     var items = result.rss.channel[0].item;
+			//     for(var i = 0; i < items.length; i++) {
+			//     	console.log(items[i].title[0], items[i].description[0]);
+			//     	//putItem(items[i].title[0], items[i].description[0]);
+			//     }
+			// });
 		  }
 		})
 	}
