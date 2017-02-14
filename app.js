@@ -16,7 +16,7 @@
 		  if (!error && response.statusCode == 200) {
 		  	var arr = JSON.parse(body);
 		  	for (var i = 0; i < arr.length; ++i){
-		  		console.log(arr[i].id);
+		  		var bus_id = arr[i].id;
 		  		var params = {
 				    TableName: "bronco-mapper",
 				    Item:{
@@ -33,12 +33,11 @@
 			
 			  	docClient.put(params, function(err, data) {
 	       			if (err) {
-	           			console.error("Unable to add bus", body, ". Error JSON:", JSON.stringify(err, null, 2));
+	           			console.error("Unable to add bus", params.Item.primarykey, ". Error JSON:", JSON.stringify(err, null, 2));
 	       			} else {
-	           			console.log("PutItem succeeded:", body);
+	           			console.log("PutItem succeeded: ", params.Item.primarykey);
 	       			}
 	    		});
-		 
 		  	} 
 		 //    parseString(body, function (err, result) {
 			//     // console.dir(result.rss.channel[0].item);
@@ -127,6 +126,6 @@
 	})
 **/
 	app.listen(3000, function () {
-	  console.log('Example app listening on port 3000!')
+	  console.log('Listening on port 3000!')
 	})
 	
