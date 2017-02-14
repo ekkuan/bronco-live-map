@@ -15,32 +15,31 @@
 		request('https://rqato4w151.execute-api.us-west-1.amazonaws.com/dev/info', function (error, response, body) {
 		  if (!error && response.statusCode == 200) {
 		  	var arr = JSON.parse(body);
-		  	console.log(arr.length);
 		  	for (var i = 0; i < arr.length; ++i){
-		  		var params = { 
-		  			TableName = table,
-		  			Item: {
-		  				"id": arr[i].id,
-		  				"logo": arr[i].logo,
-		  				"lat": arr[i].lat,
-		  				"lng": arr[i].lng,
-		  				"route": arr[i].route
-		  			} 
-		  		};
-
-		  	docClient.put(params, function(err, data) {
-       			if (err) {
-           			console.error("Unable to add bus", arr[i].id, ". Error JSON:", JSON.stringify(err, null, 2));
-       			} else {
-           			console.log("PutItem succeeded:", arr[i].id);
-       			}
-    		});
 		  		console.log(arr[i].id);
-		  		console.log(arr[i].logo);
-		  		console.log(arr[i].lat);
-		  		console.log(arr[i].lng);
-		  		console.log(arr[i].route);
-		  	}
+		  		var params = {
+				    TableName: "bronco-mapper",
+				    Item:{
+				        "primarykey": arr[i].id,
+				        "timestamp": Date.now(),
+				        "info":{
+				            "logo": arr[i].logo,
+				            "lat": arr[i].lat,
+				            "lng": arr[i].lng,
+				            "route":arr[i].route
+				        }
+				    }
+				};
+			
+			  	docClient.put(params, function(err, data) {
+	       			if (err) {
+	           			console.error("Unable to add bus", body, ". Error JSON:", JSON.stringify(err, null, 2));
+	       			} else {
+	           			console.log("PutItem succeeded:", body);
+	       			}
+	    		});
+		 
+		  	} 
 		 //    parseString(body, function (err, result) {
 			//     // console.dir(result.rss.channel[0].item);
 			//     var items = result.rss.channel[0].item;
