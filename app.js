@@ -5,9 +5,7 @@
 	var app = express()
 
 	AWS.config.update({
-	  region: "us-west-2",
-	  accessKeyId: "", //maybe??
-	  secretAccessKey: "" 
+	  region: "us-west-2"
 	});
 
 	var docClient = new AWS.DynamoDB.DocumentClient();
