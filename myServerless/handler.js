@@ -10,9 +10,12 @@ var table = "bronco-mapper";
 
 'use strict'; 
 
-module.exports.hello = (event, context, callback) => {
-  const response = {
+module.exports.hello = (event, context, callback) => {  //Lambda function 
+  const response = {                                    
     statusCode: 200,
+    hearders: {
+        "Access-Control-Allow-Origin" : "*"
+    },
     body: JSON.stringify({
       message: 'Updated Bus Route information!'
     }),
