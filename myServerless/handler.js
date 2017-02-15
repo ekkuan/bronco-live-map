@@ -26,7 +26,7 @@ module.exports.hello = (event, context, callback) => {  //Lambda function
 };
 
 module.exports.queryBusRoutes = (event, context, callback) => {  
-  queryWaitingtime(event.pathParameters.name, callback);
+  queryBusRoutes(event.pathParameters.name, callback);
 };
 
 function fetchBusRoutes() {
@@ -69,7 +69,7 @@ function queryBusRoutes(primarykey, callback) {
       "#key": "primarykey"
     },
     ExpressionAttributeValues: {
-      ":inputName":primarykey
+      ":inputName":parseInt(primarykey)
     }
   };
 
