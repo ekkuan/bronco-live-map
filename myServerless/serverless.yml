@@ -83,7 +83,7 @@ functions:
     handler: handler.queryBusRoutes
     events:      
       - http:
-         path: bus/search/{name}
+         path: bus/search
          method: get
 
 # you can add CloudFormation resource templates here
