@@ -72,11 +72,11 @@ function fetchBusRoutes() {
             }
         });
 
-        docClient.update(params2, function(err, data) {
+        docClient.put(params2, function(err, data) {
             if (err) {
-                console.error("Unable to add bus", params.Item.primarykey, ". Error JSON:", JSON.stringify(err, null, 2));
+                console.error("Unable to add bus", params2.Item.primarykey, ". Error JSON:", JSON.stringify(err, null, 2));
             } else {
-                console.log("PutItem succeeded: ", params.Item.primarykey);
+                console.log("PutItem succeeded: ", params2.Item.primarykey);
             }
         });
       } 

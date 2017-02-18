@@ -79,7 +79,7 @@ functions:
 #    Define function environment variables here
 #    environment:
 #      variable2: value2
-  searchTime:
+  search:
     handler: handler.queryBusRoutes
     events:      
       - http:
